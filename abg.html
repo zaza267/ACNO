@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abg kaban di hati, abg ocis, adek purba🥰</title>
+  <style>
+    :root {
+      --bg1: #E3DFFD;
+      --bg2: #BFDCE5;
+      --bg3: #C4DAD2;
+      --accent: #9ED2C6;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container {
+      width: 100%;
+      max-width: 950px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    p.lead {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+    .btn {
+      display: block;
+      margin: 0 auto;
+      padding: 16px 40px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(90deg, #9ED2C6, #89B9AD);
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+    .btn:hover { transform: scale(1.08); background: linear-gradient(90deg,#8cc2b8,#7fb3a8); }
+    .section { display: none; animation: fadeIn 0.7s ease; }
+    .active { display: block; }
+    .name-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      margin-bottom: 6px;
+      border: none;
+      background: rgba(255,255,255,0.4);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .name-btn:hover { background: rgba(255,255,255,0.7); }
+    .profile {
+      background: white;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      display: none;
+    }
+    .profile.active { display: block; }
+    .avatar {
+      width: 70px; height: 70px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: bold; font-size: 20px;
+      margin-right: 12px;
+    }
+    .profile-head { display: flex; align-items: center; }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+    .nav-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 28px;
+      border-radius: 14px;
+      background: linear-gradient(90deg,#9ED2C6,#A6C8E3);
+      color: white;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .nav-btn:hover { transform: scale(1.05); }
+    .verse {
+      margin-top: 30px;
+      text-align: center;
+      font-style: italic;
+      color: #4b4b4b;
+      background: rgba(255,255,255,0.5);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    /* Popup Foto */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #000;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    /* Tombol Mute */
+    .mute-toggle {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px; width: 26px;
+      left: 4px; bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #9ED2C6;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" src="Kahitna - Engga Ngerti (Official Music Video).mp3" loop></audio>
+
+  <div class="container">
+    <div class="mute-toggle">
+      🔊
+      <label class="switch">
+        <input type="checkbox" id="muteSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <section id="beranda" class="section active">
+      <h1>Abg kaban di hati, abg ocis, adek purba🥰</h1>
+      <p class="lead">Komunitas penuh tawa dan kehangatan — kenali anggota kami!</p>
+
+      <button id="masukBtn" class="btn">✨ Masuk ✨</button>
+      <div id="namesArea"></div>
+      <div id="profiles"></div>
+
+      <div class="verse">
+        “A friend loves at all times, and a brother is born for a time of adversity.”<br>
+        <strong>— Proverbs 17:17 (NIV)</strong>
+      </div>
+
+      <button class="nav-btn" onclick="showSection('galeri')">🌸 Lihat Galeri Kami 🌸</button>
+      <footer>© 2025 Oryza Ginting — All Rights Reserved</footer>
+    </section>
+
+    <section id="galeri" class="section">
+      <h1>Galeri Kami 📸</h1>
+      <div class="gallery">
+        <img src="foto 1.jpg" alt="Foto 1">
+        <img src="foto 2.jpg" alt="Foto 2">
+        <img src="foto 3.jpg" alt="Foto 3">
+        <img src="foto 4.jpg" alt="Foto 4">
+        <img src="foto 5.jpg" alt="Foto 5">
+        <img src="foto 6.jpg" alt="Foto 6">
+        <img src="foto 7.jpg" alt="Foto 7">
+        <img src="foto 8.jpg" alt="Foto 8">
+        <img src="kertas biodata.jpg" alt="Foto KB">
+        <img src="foto 9.jpg" alt="Foto 9">
+      </div>
+      <button class="nav-btn" onclick="showSection('beranda')">⬅️ Kembali ke Profil</button>
+    </section>
+  </div>
+
+  <div id="popup" class="popup">
+    <span class="close" onclick="closePopup()">×</span>
+    <img id="popupImg" src="">
+  </div>
+
+  <script>
+    const audio = document.getElementById("bgMusic");
+    const muteSwitch = document.getElementById("muteSwitch");
+    audio.muted = true; // tidak autoplay dengan suara
+
+    muteSwitch.addEventListener("change", () => {
+      audio.muted = !muteSwitch.checked;
+      if (muteSwitch.checked) audio.play();
+      else audio.pause();
+    });
+
+    const anggota = [
+      {id:'alexa',name:'Alexa',nick:'Lex',fullname:'Alexa Artana Gurning',ttl:'Medan, 30 Maret 2010',alamat:'Sungall',univ:'Universitas Indonesia',cita:'Pacar Bg Mayer',bio:'Mayer Christoper Sinambela'},
+      {id:'carenina',name:'Carenina',nick:'Pagit',fullname:'Carenina Aurelly Tarigan',ttl:'Medan, 10 Oktober 2010',alamat:'Bulann 103!!',univ:'UI Hukum / PKN STAN',cita:'Menjadi jodoh Jaehyun',bio:'Yaachel Kaban'},
+      {id:'nicholas',name:'Nicholas',nick:'Nic',fullname:'Nicholas Jeferson Ritonga',ttl:'Medan, 19 Maret 2010',alamat:'DP Gais',univ:'Stanford University',cita:'Dokter',bio:'Rivka Michelle Napitupulu'},
+      {id:'oryza',name:'Oryza',nick:'Ory',fullname:'Oryza Pranantha Ginting',ttl:'Medan, 26 April 2010',alamat:'Delta',univ:'Institut Teknologi Bandung',cita:'Jek jek boypren',bio:'Jacquelyn Claudia Purba'}
+    ];
+
+    const masukBtn = document.getElementById('masukBtn');
+    const namesArea = document.getElementById('namesArea');
+    const profilesArea = document.getElementById('profiles');
+
+    masukBtn.addEventListener('click', () => {
+      if(namesArea.children.length === 0) {
+        anggota.forEach(a => {
+          const btn = document.createElement('button');
+          btn.className = 'name-btn';
+          btn.textContent = `${a.name} (${a.nick})`;
+          btn.addEventListener('click', () => showProfile(a.id));
+          namesArea.appendChild(btn);
+        });
+      }
+      if(profilesArea.children.length === 0) {
+        anggota.forEach(a => {
+          const div = document.createElement('div');
+          div.className = 'profile';
+          div.id = 'profile-' + a.id;
+          div.innerHTML = `
+            <div class="profile-head">
+              <div class="avatar">${a.name.charAt(0)}</div>
+              <div>
+                <div style="font-weight:700">${a.name} <span style="color:var(--muted)">— ${a.nick}</span></div>
+                <div style="font-size:13px;color:var(--muted)">${a.bio}</div>
+              </div>
+            </div>
+            <div style="margin-top:10px;color:var(--muted)">
+              <strong>Nama Lengkap:</strong> ${a.fullname}<br>
+              <strong>Tempat, Tanggal Lahir:</strong> ${a.ttl}<br>
+              <strong>Alamat:</strong> ${a.alamat}<br>
+              <strong>Universitas Impian:</strong> ${a.univ}<br>
+              <strong>Cita-cita:</strong> ${a.cita}
+            </div>`;
+          profilesArea.appendChild(div);
+        });
+      }
+    });
+
+    function showProfile(id){
+      document.querySelectorAll('.profile').forEach(p => p.classList.remove('active'));
+      document.getElementById('profile-' + id).classList.add('active');
+    }
+
+    function showSection(id){
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popupImg");
+    document.querySelectorAll(".gallery img").forEach(img => {
+      img.addEventListener("click", () => {
+        popup.style.display = "flex";
+        popupImg.src = img.src;
+      });
+    });
+    function closePopup() { popup.style.display = "none"; }
+  </script>
+</body>
+</html>
+
+
