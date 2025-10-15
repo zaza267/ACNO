@@ -120,6 +120,17 @@
       cursor: pointer;
     }
     .gallery img:hover { transform: scale(1.05); }
+
+    /* Tampilan kecil */
+    .small-view .gallery img {
+      height: 120px;
+      border-radius: 10px;
+    }
+    .small-view .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
     .nav-btn {
       display: block;
       margin: 30px auto 0;
@@ -214,7 +225,7 @@
 <body>
   <audio id="bgMusic" src="Kahitna - Engga Ngerti (Official Music Video).mp3" loop></audio>
 
-  <div class="container">
+  <div class="container" id="mainContainer">
     <div class="mute-toggle">
       <label class="switch">
         <input type="checkbox" id="muteSwitch">
@@ -241,6 +252,10 @@
 
     <section id="galeri" class="section">
       <h1>Galeri Kami 📸</h1>
+
+      <!-- Tombol ubah ukuran -->
+      <button id="toggleSizeBtn" class="nav-btn">🔍 Ubah Ukuran Foto</button>
+
       <div class="gallery">
         <img src="foto 1.jpg" alt="Foto 1">
         <img src="foto 2.jpg" alt="Foto 2">
@@ -251,12 +266,13 @@
         <img src="foto 7.jpg" alt="Foto 7">
         <img src="foto 8.jpg" alt="Foto 8">
         <img src="foto 15.jpg" alt="Foto 15">
-        <img src="foto 10.jpg" alt="Foto 1">
-        <img src="foto 11.jpg" alt="Foto 2">
-        <img src="foto 12.jpg" alt="Foto 3">
-        <img src="foto 13.jpg" alt="Foto 4">
-        <img src="foto14.jpg" alt="Foto 5">
+        <img src="foto 10.jpg" alt="Foto 10">
+        <img src="foto 11.jpg" alt="Foto 11">
+        <img src="foto 12.jpg" alt="Foto 12">
+        <img src="foto 13.jpg" alt="Foto 13">
+        <img src="foto14.jpg" alt="Foto 14">
       </div>
+
       <button class="nav-btn" onclick="showSection('beranda')">⬅️ Kembali ke Profil</button>
     </section>
   </div>
@@ -269,12 +285,21 @@
   <script>
     const audio = document.getElementById("bgMusic");
     const muteSwitch = document.getElementById("muteSwitch");
-    audio.muted = true; // tidak autoplay dengan suara
+    const container = document.getElementById("mainContainer");
+    const toggleSizeBtn = document.getElementById("toggleSizeBtn");
 
+    audio.muted = true;
     muteSwitch.addEventListener("change", () => {
       audio.muted = !muteSwitch.checked;
       if (muteSwitch.checked) audio.play();
       else audio.pause();
+    });
+
+    toggleSizeBtn.addEventListener("click", () => {
+      container.classList.toggle("small-view");
+      toggleSizeBtn.textContent = container.classList.contains("small-view")
+        ? "🖼️ Tampilkan Ukuran Besar"
+        : "🔍 Ubah Ukuran Foto";
     });
 
     const anggota = [
@@ -348,10 +373,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
